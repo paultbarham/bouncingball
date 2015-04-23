@@ -12,23 +12,42 @@ package boundingball;
 public class Ball {
     private double x;
     private double y;
+    private double lastX;
+    private double lastY;
     private double xVelocity;
     private double yVelocity;
 
     private int width;
     private int height;
+    
+    private double startX;
+    private double startY;
+    private double startXVelocity;
+    private double startYVelocity;
 
+    private int startWidth;
+    private int startHeight;
+    
     private static final int DEFAULT_WIDTH = 10;
     private static final int DEFAULT_HEIGHT = 10;
 
     public Ball(int x, int y, int xVelocity, int yVelocity, int width, int height) {
         this.x = x;
         this.y = y;
+        this.lastX = this.x + 1;
+        this.lastY = this.y + 1;
         this.xVelocity = xVelocity;
         this.yVelocity = yVelocity;
         this.width = width;
         this.height = height;
+        this.startX = x;
+        this.startY = y;
+        this.startXVelocity = xVelocity;
+        this.startYVelocity = yVelocity;
+        this.startWidth = width;
+        this.startHeight = height;
     }
+    
     public Ball(int x, int y, int xVelocity, int yVelocity) {
         this.x = x;
         this.y = y;
@@ -37,8 +56,26 @@ public class Ball {
         this.width = DEFAULT_WIDTH;
         this.height = DEFAULT_HEIGHT;
     }
+    
+    public void startOver () {
+        this.x = this.startX;
+        this.y = this.startY;
+        this.xVelocity = this.startXVelocity;
+        this.yVelocity = this.startYVelocity;
+        this.width = this.startWidth;
+        this.height = this.startHeight;
+    }
+    
+    public int hasStopped() {
+    	if ((Math.abs(this.lastX - this.x) < 0.1) && (Math.abs(this.lastY - this.y) < 0.1))
+    		return 1;
+    	else
+    		return 0;	
+    }
 
     public void update() {
+    	this.lastX = this.x;
+    	this.lastY = this.y;
         this.x += xVelocity;
         this.y += yVelocity;
     }

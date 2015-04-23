@@ -105,7 +105,10 @@ public class Main extends JPanel {
 
         		ball[i].setyVelocity(v2);
         		ball[i].update();
-
+        		
+        		if (ball[i].hasStopped() == 1)
+        				ball[i].startOver();
+        		
         		maxY = getHeight() - (ball[i].getHeight() / 2);
         		maxX = getWidth() - (ball[i].getWidth() / 2);
         		minX = 0 + ball[i].getWidth() / 2;
@@ -119,7 +122,6 @@ public class Main extends JPanel {
         			ball[i].setY(0);
         			ball[i].setyVelocity(-COEFFICIENT_OF_RESTITUTION * ball[i].getyVelocity());
         		}
-
 
         		// Ball is out of bounds in x dimension
         		if (ball[i].getX() > maxX) {
@@ -135,8 +137,10 @@ public class Main extends JPanel {
         		if (ball[i].getY() == maxY) {
         			ball[i].setxVelocity(COEFFICIENT_OF_FRICTION * ball[i].getxVelocity());
         		}
-
+        		
         		repaint();
+
+        		
         	}
         }
 
