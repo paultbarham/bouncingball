@@ -101,18 +101,16 @@ public class Main extends JPanel {
         	double v2;
         	int maxY, maxX, minX;
         	for (int i = 0; i < NUM_BALLS; i++) {
+        		
         		v2 = (ACCELERATION * 1) + ball[i].getyVelocity();
 
         		ball[i].setyVelocity(v2);
         		ball[i].update();
-        		
-        		if (ball[i].hasStopped() == 1)
-        				ball[i].startOver();
-        		
+        		      		
         		maxY = getHeight() - (ball[i].getHeight() / 2);
         		maxX = getWidth() - (ball[i].getWidth() / 2);
         		minX = 0 + ball[i].getWidth() / 2;
-
+        		
         		// Ball is out of bounds in y dimension
         		if (ball[i].getY() > maxY) {
         			ball[i].setY(maxY);
@@ -136,7 +134,12 @@ public class Main extends JPanel {
         		// ball is rolling along the bottom
         		if (ball[i].getY() == maxY) {
         			ball[i].setxVelocity(COEFFICIENT_OF_FRICTION * ball[i].getxVelocity());
+        			if (Math.abs(ball[i].getyVelocity()) < 1.00000000000001)
+        				v2 = 0.0;
         		}
+        		
+        		if ((ball[i].hasStopped() == 1) && (v2 < 0.0001) && (ball[i].getY() >= (maxY - ball[i].getHeight())))
+    				ball[i].startOver();
         		
         		repaint();
 

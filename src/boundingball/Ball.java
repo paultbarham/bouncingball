@@ -67,10 +67,12 @@ public class Ball {
     }
     
     public int hasStopped() {
-    	if ((Math.abs(this.lastX - this.x) < 0.1) && (Math.abs(this.lastY - this.y) < 0.1))
+    	if ((Math.abs(this.lastX - this.x) < 0.01) && (Math.abs(this.lastY - this.y) < 0.01) ) {
     		return 1;
-    	else
+    	}
+    	else {
     		return 0;	
+    	}
     }
 
     public void update() {
