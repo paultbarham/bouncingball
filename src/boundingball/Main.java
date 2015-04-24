@@ -87,6 +87,9 @@ public class Main extends JPanel {
            }
           
            g.fillOval(upperLeftX, upperLeftY, ball[i].getWidth(), ball[i].getHeight());
+           g.setColor(Color.black);
+   		   g.drawString(Integer.toString(i), upperLeftX, upperLeftY);
+   		   
         }
     }
 
@@ -141,10 +144,9 @@ public class Main extends JPanel {
         		if ((ball[i].hasStopped() == 1) && (v2 < 0.0001) && (ball[i].getY() >= (maxY - ball[i].getHeight())))
     				ball[i].startOver();
         		
-        		repaint();
 
-        		
         	}
+    	repaint();
         }
 
     }
