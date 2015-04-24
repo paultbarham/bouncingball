@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 public class Main extends JPanel {
 
     private static final int FRAMES_PER_SECOND = 30;
-    private static final int NUM_BALLS = 6;
+    private static final int NUM_BALLS = 6; // Set to 20 or less
     private static final int MS_TO_WAIT = 1000 / FRAMES_PER_SECOND;
     private Ball[] ball;
     private static final int INITIAL_Y_VELOCITY = 10;
