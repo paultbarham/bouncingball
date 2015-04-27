@@ -5,7 +5,12 @@
 
 package boundingball;
 
+import java.applet.Applet;
 import java.awt.Color;
+
+import javax.swing.JApplet;
+
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.Timer;
@@ -18,9 +23,22 @@ import javax.swing.JPanel;
  *
  * @author ndunn
  */
-public class Main extends JPanel {
 
-    private static final int FRAMES_PER_SECOND = 30;
+public class Main extends JApplet {
+	//private static final long serialVersionUID = 1L;
+   private myPanel thePanel;
+	 
+public void init() {
+    setSize(640, 640);
+    setLayout(new BorderLayout());
+    thePanel = new myPanel();
+    add(thePanel);
+    thePanel.start();
+}
+
+public class myPanel extends JPanel {
+	//private static final long serialVersionUID = 1L;
+	private static final int FRAMES_PER_SECOND = 30;
     private static final int NUM_BALLS = 6; // Set to 20 or less
     private static final int MS_TO_WAIT = 1000 / FRAMES_PER_SECOND;
     private Ball[] ball;
@@ -37,7 +55,7 @@ public class Main extends JPanel {
     private Timer animationTimer;
     private TimerTask animationTask;
 
-    public Main() {
+    public myPanel() {
         ball = new Ball[NUM_BALLS];
         for (int i = 0; i < NUM_BALLS; i++) {
         	ball[i] = new Ball(200, 0, INITIAL_X_VELOCITY*i, INITIAL_Y_VELOCITY*i, 20-i, 20-i);
@@ -47,6 +65,7 @@ public class Main extends JPanel {
 
         animationTimer = new Timer("Ball Animation");
         animationTask = new AnimationUpdator();
+
     }
 
     public void start() {
@@ -59,11 +78,11 @@ public class Main extends JPanel {
         return new Dimension(640, 640);
     }
 
-
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
+    	super.paintComponent(g);
+    	
+    	g.setColor(Color.white);
         g.clearRect(0, 0, getWidth(), getHeight());
         int upperLeftX, upperLeftY;
         for ( int i = 0; i < NUM_BALLS; i++ ) {
@@ -87,6 +106,7 @@ public class Main extends JPanel {
            }
           
            g.fillOval(upperLeftX, upperLeftY, ball[i].getWidth(), ball[i].getHeight());
+           
            g.setColor(Color.black);
    		   g.drawString(Integer.toString(i), upperLeftX, upperLeftY);
    		   
@@ -144,14 +164,13 @@ public class Main extends JPanel {
         		if ((ball[i].hasStopped() == 1) && (v2 < 0.0001) && (ball[i].getY() >= (maxY - ball[i].getHeight())))
     				ball[i].startOver();
         		
-
         	}
     	repaint();
         }
 
     }
 
-
+}
     /**
      * @param args the command line arguments
      */

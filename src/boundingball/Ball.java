@@ -34,8 +34,8 @@ public class Ball {
     public Ball(int x, int y, int xVelocity, int yVelocity, int width, int height) {
         this.x = x;
         this.y = y;
-        this.lastX = this.x + 1;
-        this.lastY = this.y + 1;
+        this.lastX = this.x;
+        this.lastY = this.y;
         this.xVelocity = xVelocity;
         this.yVelocity = yVelocity;
         this.width = width;
