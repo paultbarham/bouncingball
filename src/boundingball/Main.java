@@ -5,7 +5,6 @@
 
 package boundingball;
 
-import java.applet.Applet;
 import java.awt.Color;
 
 import javax.swing.JApplet;
@@ -25,7 +24,7 @@ import javax.swing.JPanel;
  */
 
 public class Main extends JApplet {
-	//private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
    private myPanel thePanel;
 	 
 public void init() {
@@ -37,7 +36,7 @@ public void init() {
 }
 
 public class myPanel extends JPanel {
-	//private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	private static final int FRAMES_PER_SECOND = 30;
     private static final int NUM_BALLS = 6; // Set to 20 or less
     private static final int MS_TO_WAIT = 1000 / FRAMES_PER_SECOND;
